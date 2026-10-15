@@ -14,7 +14,7 @@ const pages = {
     <section class="block"><div class="container"><div class="highlight"><div><p class="eyebrow" style="color:#e9f0e8">OUR IMPACT</p><h2>永續，不只有理念，也需要數據。</h2><p>查看格外品攔截、產品推廣與合作夥伴的第一年企劃目標。</p></div><a class="btn" href="esg.html">查看 ESG 儀表板 →</a></div></div></section>`,
   "products.html": `
     <section class="page-hero"><div class="container"><p class="eyebrow">SUBSCRIPTION BOX</p><h1>產品訂閱</h1><p>規劃以容易料理與保存的惜食食品，讓永續生活更容易開始。</p></div></section>
-    <section class="block"><div class="container"><div class="grid"><article class="card"><span class="icon">📦</span><h2>永續福利訂閱箱</h2><div class="price">NT$499 <small style="font-size:1rem">／箱</small></div><p>企劃規劃每箱包含 4～6 樣產品，包括主餐調理包、濃縮湯底、果乾與選配商品。</p><p>未來規劃每週與每月配送方案。</p><a class="btn" href="contact.html">留下訂閱意願 →</a></article><article class="card"><span class="icon">🍛</span><h3>主餐調理包</h3><p>規劃高纖咖哩燉蔬菜等料理，方便簡單加熱。</p></article><article class="card"><span class="icon">🍊</span><h3>湯底與果乾</h3><p>規劃高湯底、南瓜濃湯底與宜蘭特色果乾等產品。</p></article></div><p class="note">此頁為專題示範，NT$499 為企劃定價，尚未開放實際下單或收款；實際產品、食安資訊及配送條件需營運前確認。</p></div></section>`,
+    <section class="block"><div class="container"><div class="grid"><article class="card"><span class="icon">📦</span><h2>永續福利訂閱箱</h2><div class="price">NT$499 <small style="font-size:1rem">／箱</small></div><p>企劃規劃每箱包含 4～6 樣產品，包括主餐調理包、濃縮湯底、果乾與選配商品。</p><p>未來規劃每週與每月配送方案。</p><a class="btn" href="order.html">開始訂購試算 →</a></article><article class="card"><span class="icon">🍛</span><h3>主餐調理包</h3><p>規劃高纖咖哩燉蔬菜等料理，方便簡單加熱。</p></article><article class="card"><span class="icon">🍊</span><h3>湯底與果乾</h3><p>規劃高湯底、南瓜濃湯底與宜蘭特色果乾等產品。</p></article></div><p class="note">此頁為專題示範，NT$499 為企劃定價，尚未開放實際下單或收款；實際產品、食安資訊及配送條件需營運前確認。</p></div></section>`,
   "business.html": `
     <section class="page-hero"><div class="container"><p class="eyebrow">CORPORATE PARTNERSHIP</p><h1>企業永續採購</h1><p>將員工福利、節慶贈禮與惜食理念結合，為企業提供具永續價值的採購選擇。</p></div></section>
     <section class="block"><div class="container"><div class="grid"><article class="card"><span class="icon">🎁</span><h3>員工福利與贈禮</h3><p>以既有福利或商務贈禮需求導入惜食商品。</p></article><article class="card"><span class="icon">🚚</span><h3>集中配送規劃</h3><p>依企業需求評估集中採購與配送方式。</p></article><article class="card"><span class="icon">📊</span><h3>採購紀錄</h3><p>規劃提供商品來源、採購量與惜食績效資料。</p></article></div>
@@ -33,7 +33,7 @@ const pages = {
 };
 
 const current = location.pathname.split("/").pop() || "index.html";
-document.getElementById("app").innerHTML = pages[current] || pages["index.html"];
+if (current !== "order.html") document.getElementById("app").innerHTML = pages[current] || pages["index.html"];
 for (const link of document.querySelectorAll(".site-nav a")) {
   if (link.getAttribute("href") === current) {
     link.classList.add("active");

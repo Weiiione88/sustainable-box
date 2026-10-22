@@ -9,18 +9,17 @@ const selectOptions = (items) => items.map(name => {
 function updateDelivery() {
   const type = $('delivery').value;
   const pickup = $('pickup');
-  pickup.replaceChildren(...selectOptions(type === 'campus'
-    ? ['宜蘭大學校園自取點（規劃中）']
-    : ['宜蘭企業 Hub（據點待確認）','校園教職員 Hub（據點待確認）','社區集中配送點（據點待確認）']));
+  // 校園自取已移除；只保留企業／社區集中取貨及低溫宅配。
+  pickup.replaceChildren(
+    ...selectOptions(['宜蘭企業 Hub（據點待確認）', '社區集中配送點（據點待確認）'])
+  );
   $('pickup-group').hidden = type === 'home';
   $('address-group').hidden = type !== 'home';
-  for(const id of ['city','district','address']) $(id).required = type === 'home';
-  pickup.required = type !== 'home';
+  for (const id of ['city', 'district', 'address']) $(id).required = type === 'home';
+  pickup.required = type === 'hub';
   $('delivery-note').textContent = type === 'hub'
     ? '試算採每箱 NT$80 的企劃集中配送成本假設；正式收費和集運點尚待確認。'
-    : type === 'campus'
-      ? '校園自取點尚未啟用，相關取貨費用待確認。'
-      : '低溫宅配費用與可配送區域尚未確認；目前僅顯示商品小計。';
+    : '低溫宅配費用與可配送區域尚未確認；目前僅顯示商品小計。';
   calculate();
 }
 function calculate() {

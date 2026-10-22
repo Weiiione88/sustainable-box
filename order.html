@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="永續福利箱：串聯在地農民、食品加工與消費者，探索惜食訂閱與企業永續採購。">
-  <title>訂購試算｜永續福利箱</title>
+  <title>訂購專區｜永續福利箱</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="order.css">
   <script src="script.js" defer></script>
@@ -22,12 +22,12 @@
         <a href="business.html">企業合作</a>
         <a href="esg.html">ESG 儀表板</a>
         <a href="stories.html">產地故事</a>
-        <a href="contact.html">聯絡我們</a><a href="order.html">訂購試算</a>
+        <a href="contact.html">聯絡我們</a><a href="order.html">訂購專區</a>
       </nav>
     </div>
   </header>
   <main id="app" tabindex="-1">
-<section class="page-hero"><div class="container"><p class="eyebrow">ORDER DEMO</p><h1>永續福利箱訂購試算</h1><p>填寫箱數、配送方式和收件資料，確認後進入模擬訂購完成畫面。</p><p class="note">展示原型：目前不接受正式訂購、不收款，也不會傳送或儲存填寫的個人資料。請用虛構資料測試。</p></div></section>
+<section class="page-hero"><div class="container"><p class="eyebrow">ORDER DEMO</p><h1>永續福利箱訂購專區</h1><p>填寫箱數、配送方式和收件資料，確認後進入模擬訂購完成畫面。</p><p class="note">展示原型：目前不接受正式訂購、不收款，也不會傳送或儲存填寫的個人資料。請用虛構資料測試。</p></div></section>
 <section class="block"><div class="container order-layout"><form id="order-form" novalidate>
   <div class="card order-section"><h2>① 選擇商品與訂購身分</h2><div class="field"><label for="buyer-type">訂購身分 *</label><select id="buyer-type"><option value="person">一般消費者</option><option value="business">企業／教職員團購</option></select></div><div id="business-fields" hidden><div class="order-grid"><div class="field"><label for="company">企業／團購單位名稱 *</label><input id="company" maxlength="80" placeholder="例如：示範公司"></div><div class="field"><label for="taxid">統一編號（選填）</label><input id="taxid" inputmode="numeric" maxlength="8" pattern="[0-9]{8}" placeholder="8 位數字；展示可留空"></div></div></div><p>永續福利訂閱箱 <strong>NT$499／箱</strong></p>
     <div class="order-grid"><div class="field"><label for="quantity">訂購箱數 *</label><input id="quantity" type="number" min="1" max="1000" step="1" value="1" required></div>
@@ -35,8 +35,8 @@
     <div class="field"><label for="diet">飲食偏好（展示）</label><select id="diet"><option>無特殊偏好</option><option>全素需求（需確認供應）</option><option>蛋奶素需求（需確認供應）</option><option>減醣需求（需確認供應）</option></select></div><p class="field-help">第一批預購示範目標 100 箱；實際排產日期待確認。週訂閱與月訂閱僅為需求展示，不會自動扣款。</p>
   </div>
   <div class="card order-section"><h2>② 配送與集運地點</h2>
-    <div class="field"><label for="delivery">配送方式 *</label><select id="delivery" required><option value="campus">校園自取（尚未啟用）</option><option value="hub">企業／社區集中配送（試算）</option><option value="home">低溫宅配（運費待報價）</option></select></div>
-    <div class="field" id="pickup-group"><label for="pickup">預計集運／自取地點 *</label><select id="pickup"><option value="宜蘭大學校園自取點（規劃中）">宜蘭大學校園自取點（規劃中）</option></select></div>
+    <div class="field"><label for="delivery">配送方式 *</label><select id="delivery" required><option value="hub">企業／社區集中配送（試算）</option><option value="home">低溫宅配（運費待報價）</option></select></div>
+    <div class="field" id="pickup-group"><label for="pickup">預計集中取貨地點 *</label><select id="pickup" required><option value="">請選擇集中取貨據點</option></select></div>
     <div id="address-group" class="address-group" hidden>
       <div class="order-grid"><div class="field"><label for="city">縣市 *</label><input id="city" autocomplete="address-level1" placeholder="例如：宜蘭縣"></div><div class="field"><label for="district">鄉鎮市區 *</label><input id="district" autocomplete="address-level2" placeholder="例如：宜蘭市"></div></div>
       <div class="field"><label for="address">詳細配送地址 *</label><input id="address" autocomplete="street-address" placeholder="道路、門牌、樓層（請以測試資料填寫）"></div>
@@ -51,7 +51,7 @@
   <p id="error-message" role="alert" class="form-error" hidden></p>
   <button class="btn order-submit" type="submit">前往訂單確認 →</button>
 </form>
-<aside class="card order-summary" aria-live="polite"><h2>訂單金額試算</h2><div class="summary-line"><span>每箱單價</span><strong>NT$499</strong></div><div class="summary-line"><span>訂購箱數</span><strong id="sum-qty">1 箱</strong></div><div class="summary-line"><span>商品小計</span><strong id="sum-subtotal">NT$499</strong></div><div class="summary-line"><span>配送試算</span><strong id="sum-shipping">待確認</strong></div><hr><div class="summary-line sum-grand"><span>預估總計</span><strong id="sum-total">NT$499 起</strong></div><p id="summary-disclaimer" class="field-help">這是非正式試算，運費與實際售價需確認。</p></aside>
+<aside class="card order-summary" aria-live="polite"><h2>訂單金額明細（試算）</h2><div class="summary-line"><span>每箱單價</span><strong>NT$499</strong></div><div class="summary-line"><span>訂購箱數</span><strong id="sum-qty">1 箱</strong></div><div class="summary-line"><span>商品小計</span><strong id="sum-subtotal">NT$499</strong></div><div class="summary-line"><span>配送試算</span><strong id="sum-shipping">待確認</strong></div><hr><div class="summary-line sum-grand"><span>預估總計</span><strong id="sum-total">NT$499 起</strong></div><p id="summary-disclaimer" class="field-help">這是非正式試算，運費與實際售價需確認。</p></aside>
 </div></section>
 <dialog id="confirmation" class="confirm-dialog" aria-labelledby="confirmation-title"><div class="confirm-content"><h2 id="confirmation-title">訂單預覽（未送出）</h2><p class="note">沒有付款步驟，也不會建立真實訂單或傳送個人資料。</p><div id="preview-details"></div><div class="actions"><button type="button" class="btn secondary" id="close-confirm">返回修改</button><button type="button" class="btn" id="finish-order">確認訂購 → 完成（模擬）</button></div></div><div id="order-success" class="order-success" hidden><div class="success-check" aria-hidden="true">✓</div><h2 id="order-success-title">訂購完成！</h2><p>感謝您支持永續福利箱。</p><p class="note">這是專題展示的模擬訂購完成畫面，沒有正式成立訂單、傳送資料或產生付款。</p><button type="button" class="btn" id="success-home">返回首頁 →</button></div></dialog>
 </main>

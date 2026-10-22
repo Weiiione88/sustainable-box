@@ -11,7 +11,7 @@ function updateDelivery() {
   const pickup = $('pickup');
   pickup.replaceChildren(...selectOptions(type === 'campus'
     ? ['宜蘭大學校園自取點（規劃中）']
-    : ['企業指定集中配送點（尚待確認）','社區集中配送點（尚待確認）']));
+    : ['宜蘭企業 Hub（據點待確認）','校園教職員 Hub（據點待確認）','社區集中配送點（據點待確認）']));
   $('pickup-group').hidden = type === 'home';
   $('address-group').hidden = type !== 'home';
   for(const id of ['city','district','address']) $(id).required = type === 'home';
@@ -38,6 +38,8 @@ function calculate() {
     : '此金額僅是商品小計下限，未包括待確認的配送費用。';
   return {valid,q,subtotal,fee};
 }
+$('buyer-type').addEventListener('change',()=>{const b=$('buyer-type').value==='business';$('business-fields').hidden=!b;$('company').required=b;});
+if(new URLSearchParams(location.search).get('type')==='business'){$('buyer-type').value='business';$('business-fields').hidden=false;$('company').required=true;$('delivery').value='hub';}
 $('delivery').addEventListener('change',updateDelivery);
 $('quantity').addEventListener('input',calculate);
 updateDelivery();
@@ -55,11 +57,11 @@ $('order-form').addEventListener('submit',event=>{
   const type=$('delivery').value;
   const location=type==='home' ? `${$('city').value.trim()}${$('district').value.trim()}${$('address').value.trim()}` : $('pickup').value;
   const details=[
-    ['訂購類型',$('frequency').value],['商品','永續福利訂閱箱'],['箱數',`${pricing.q} 箱`],
+    ['訂購身分',$('buyer-type').value==='business'?'企業／教職員團購':'一般消費者'],...($('buyer-type').value==='business'?[['團購單位',$('company').value.trim()]]:[]),['飲食偏好',$('diet').value],['訂購類型',$('frequency').value],['商品','永續福利訂閱箱'],['箱數',`${pricing.q} 箱`],
     ['商品小計',money(pricing.subtotal)],['配送方式',$('delivery').selectedOptions[0].textContent],
     ['配送地點',location],['配送費',pricing.fee===null?'待報價':`${money(pricing.fee)}（試算）`],
     ['預估總計',pricing.fee===null?money(pricing.subtotal)+' 起':money(pricing.subtotal+pricing.fee)+'（試算）'],
-    ['姓名',$('customer').value.trim()],['電話',$('phone').value.trim()],['付款方式',$('payment').value]
+    ['姓名',$('customer').value.trim()],['電話',$('phone').value.trim()]
   ];
   const parent=$('preview-details'); parent.replaceChildren();
   for(const [label,value] of details){const p=document.createElement('p');p.className='preview-line'; const b=document.createElement('strong');b.textContent=label+'：';p.append(b,document.createTextNode(value));parent.append(p);}
